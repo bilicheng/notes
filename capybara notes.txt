@@ -1,0 +1,161 @@
+https://github.com/jnicklas/capybara
+gem 'capybara'
+
+require 'spec_helper'
+
+feature "Creating comments" do
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:project) { FactoryGirl.create(:project) }
+  let!(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
+
+  before do
+    define_permission!(user, "view", project)
+    define_permission!(user, "tag", project)
+
+    FactoryGirl.create(:state, name: "Open")
+
+    sign_in_as!(user)
+    visit '/'
+    click_link project.name
+  end
+
+  scenario "Creating a comment" do
+    click_link ticket.title
+    fill_in "Text", with: "Added a comment!"
+    click_button "Create Comment"
+    expect(page).to have_content("Comment has been created.")
+    within("#comments") do
+      expect(page).to have_content("Added a comment!")
+    end
+  end
+
+  scenario "Creating an invalid comment" do
+    click_link ticket.title
+    click_button "Create Comment"
+    expect(page).to have_content("Comment has not been created.")
+    expect(page).to have_content("Text can't be blank")
+  end
+
+  scenario "Changing a ticket's state" do
+    define_permission!(user, "change states", project)
+
+    click_link ticket.title
+    fill_in "Text", with: "This is a real issue"
+    select "Open", from: "State"
+    click_button "Create Comment"
+    expect(page).to have_content("Comment has been created.")
+    within("#ticket .state") do
+      expect(page).to have_content("Open")
+    end
+    within("#comments") do
+      expect(page).to have_content("State: Open")
+    end
+  end
+
+  scenario "A user without permission cannot change the state" do
+    click_link ticket.title
+    message = 'Unable to find css "#comment_state_id"'
+    expect {
+      find("#comment_state_id")
+    }.to raise_error(Capybara::ElementNotFound, message)
+  end
+
+  scenario "Adding a tag to a ticket" do
+    click_link ticket.title
+    within("#ticket #tags") do
+      expect(page).to_not have_content("bug")
+    end
+
+    fill_in "Text", with: "Adding the bug tag"
+    fill_in "Tags", with: "bug"
+    click_button "Create Comment"
+
+    expect(page).to have_content("Comment has been created.")
+    within("#ticket #tags") do
+      expect(page).to have_content("bug")
+    end
+  end
+end
+
+http://www.gamesparks.com/blog/automated-testing-with-cucumber-and-capybara/
+
+http://www.rubydoc.info/gems/rspec-rails/file/Capybara.md#Upgrading_to_Capybara-2_0
+
+http://www.andylindeman.com/2012/11/11/rspec-rails-and-capybara-2.0-what-you-need-to-know.html
+
+https://learn.thoughtbot.com/test-driven-rails-resources/capybara.pdf
+
+http://www.rubywatir.com/374/capybara-rspec-cheatsheet/
+
+gem 'capybara'
+
+https://blog.codecentric.de/en/2013/08/cucumber-capybara-poltergeist/
+
+http://altoros.github.io/2013/running-capybara-tests-in-remote-browsers/
+
+http://stefan.haflidason.com/robust-integration-testing-in-rails-4-with-rspec-capybara-and-selenium/
+
+http://tutorials.jumpstartlab.com/topics/capybara/capybara_practice.html
+http://everydayrails.com/2012/04/24/testing-series-rspec-requests.html
+
+As a quick summary, Capybara is an acceptance test framework and as
+such,
+tests should be written from a browser or user's perspective.
+
+As a quick summary, Capybara is an acceptance test framework and as
+such,
+tests should be written from a browser or user's perspective. With the
+rspec-rails gem, tests found in spec/requests directory have access to
+methods that expose lower-level details like requests and
+responses(methods
+like get, put, post.) So if Capybara tests are also found in that same
+spec/requests directory, you are able to use both the Capybara DSL and
+the
+free methods that are meant for integration tests which causes a
+conflict
+and leads to some developers using a mix of both. This leads to ugly
+test
+suites.
+
+The solution they came up with is to create a separate directory meant
+for
+use with Capybara DSL, which is spec/features and another directory
+(spec/api) meant for use with the Rails provided integration test tools.
+
+Michael Hartl will be releasing a newer version of his tutorial sometime
+in
+the future which will provide more up-to-date material. You might also
+want
+to look at RSpec's 'expect' syntax for its assertions. They plan on
+deprecating the 'should' syntax possibly as early as RSpec 3.0.
+
+
+
+Typically BDD works from the outside in, that is starting with the parts of
+the software whose behavior is directly perceive by the user
+•
+We say BDD refines TDD in that there is an implicit decoupling of the tests
+and the implementation (i.e.. don’t tests implementation specifics, test
+perceived behavior)
+
+BDD focuses on “specifications” that describe the behavior of the system
+
+What
+to test?
+➜
+Use Cases or User Stories, test what something
+does
+(behavior)
+rather than what something
+is (structure)
+•
+Where
+to start?
+➜
+From the outer most layer
+•
+What
+to ignore?
+➜
+Anything else... Until proven that you can’t
+

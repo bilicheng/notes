@@ -1,0 +1,31 @@
+error: SSL_connect returned=1 errno=0 state=SSLv3 read server certificate B: certificate verify failed
+
+tried to fix it, using the following link method
+http://stackoverflow.com/questions/5720484/how-to-solve-certificate-verify-failed-on-windows
+
+Download http://curl.haxx.se/ca/cacert.pem into C:\Ruby193\cerf\cacert.pem
+Go to your Computer -> Advanced Settings -> Environment Variables
+Create a new System Variable:
+
+Variable: SSL_CERT_FILE
+
+Value: C:\Ruby193\cerf\cacert.pem
+
+set > filepath.txt
+
+check SSL_CERT_FILE=C:\Ruby193\cerf\cacert.pem
+
+still failed
+
+need to hack in
+http://stackoverflow.com/questions/23263121/ruby-ssl-with-twitter-failed-on-cert-openssl-issue-on-windows-7
+irb> require 'openssl'
+irb> puts OpenSSL::X509::DEFAULT_CERT_FILE
+found its path
+ 
+Then opened a "Windows PowerShell ISE" as admin mode 
+made up a directory C:\users\Luis\Code\openknapsack\knap-build\var\knapsack\software\x86-windows\openssl\1.0.0k\ssl
+cp C:\Ruby193\cerf\cacert.pem .\cert.pem
+
+works now
+

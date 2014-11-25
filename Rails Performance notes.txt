@@ -1,0 +1,33 @@
+https://www.airpair.com/ruby-on-rails/performance
+
+at least 1000 tests/per person
+
+rails optimization
+1. Optimize Memory 
+-- ruby, less object creation
+
+2. Optimize Loops
+-- slow code
+
+3. Write Less Ruby
+-- do more SQL query
+-- write sql as many as possible
+-- conotical
+
+4. Control Memory(externally andinternally)
+
+Ruby garbage collection takes too long
+the more memory you allocate, the more work Ruby GC (garbage collector) has to do.
+Read more at http://www.airpair.com/ruby-on-rails/performance#pQzImWG3RfjA6Y73.99
+
+There are three ways to make your app faster: scaling, caching, and code optimization.
+Read more at http://www.airpair.com/ruby-on-rails/performance#pQzImWG3RfjA6Y73.99
+
+Rails fragment caching is very good in Rails 4. Rails docs is an excellent source of info on caching. 
+Another good read is Cheyne Wallace's article on Rails performance. 
+http://guides.rubyonrails.org/caching_with_rails.html
+
+7 simple steps to optimize rails code
+1. Avoid Memory Intensive Rails Features
+Some features in Rails take more memory than necessary resulting in extra garbage
+Serializer requires memoryX3

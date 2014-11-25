@@ -1,0 +1,359 @@
+\documentclass[10pt,a4paper]{article}
+
+% Packages
+\usepackage{fancyhdr}           % For header and footer
+\usepackage{multicol}           % Allows multicols in tables
+\usepackage{tabularx}           % Intelligent column widths
+\usepackage{tabulary}           % Used in header and footer
+\usepackage{hhline}             % Border under tables
+\usepackage{graphicx}           % For images
+\usepackage{xcolor}             % For hex colours
+%\usepackage[utf8x]{inputenc}    % For unicode character support
+\usepackage[T1]{fontenc}        % Without this we get weird character replacements
+\usepackage{colortbl}           % For coloured tables
+\usepackage{setspace}           % For line height
+\usepackage{lastpage}           % Needed for total page number
+\usepackage{seqsplit}           % Splits long words.
+%\usepackage{opensans}          % Can't make this work so far. Shame. Would be lovely.
+\usepackage[normalem]{ulem}     % For underlining links
+% Most of the following are not required for the majority
+% of cheat sheets but are needed for some symbol support.
+\usepackage{amsmath}            % Symbols
+\usepackage{MnSymbol}           % Symbols
+\usepackage{wasysym}            % Symbols
+%\usepackage[english,german,french,spanish,italian]{babel}              % Languages
+
+% Document Info
+\author{entaro}
+\pdfinfo{
+  /Title (rails-4.pdf)
+  /Creator (Cheatography)
+  /Author (entaro)
+  /Subject (Rails 4 Cheat Sheet)
+}
+
+% Lengths and widths
+\addtolength{\textwidth}{6cm}
+\addtolength{\textheight}{-1cm}
+\addtolength{\hoffset}{-3cm}
+\addtolength{\voffset}{-2cm}
+\setlength{\tabcolsep}{0.2cm} % Space between columns
+\setlength{\headsep}{-12pt} % Reduce space between header and content
+\setlength{\headheight}{85pt} % If less, LaTeX automatically increases it
+\renewcommand{\footrulewidth}{0pt} % Remove footer line
+\renewcommand{\headrulewidth}{0pt} % Remove header line
+\renewcommand{\seqinsert}{\ifmmode\allowbreak\else\-\fi} % Hyphens in seqsplit
+% This two commands together give roughly
+% the right line height in the tables
+\renewcommand{\arraystretch}{1.3}
+\onehalfspacing
+
+% Commands
+\newcommand{\SetRowColor}[1]{\noalign{\gdef\RowColorName{#1}}\rowcolor{\RowColorName}} % Shortcut for row colour
+\newcommand{\mymulticolumn}[3]{\multicolumn{#1}{>{\columncolor{\RowColorName}}#2}{#3}} % For coloured multi-cols
+\newcolumntype{x}[1]{>{\raggedright}p{#1}} % New column types for ragged-right paragraph columns
+\newcommand{\tn}{\tabularnewline} % Required as custom column type in use
+
+% Font and Colours
+\definecolor{HeadBackground}{HTML}{333333}
+\definecolor{FootBackground}{HTML}{666666}
+\definecolor{TextColor}{HTML}{333333}
+\definecolor{DarkBackground}{HTML}{404040}
+\definecolor{LightBackground}{HTML}{DEDEDE}
+\renewcommand{\familydefault}{\sfdefault}
+\color{TextColor}
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhead{} % Set header to blank
+\fancyfoot{} % Set footer to blank
+\fancyhead[L]{
+\noindent
+\begin{multicols}{3}
+\begin{tabulary}{5.8cm}{C}
+    \SetRowColor{DarkBackground}
+    \vspace{-7pt}
+    {\parbox{\dimexpr\textwidth-2\fboxsep\relax}{\noindent
+        \hspace*{-6pt}\includegraphics[width=5.8cm]{/web/www.cheatography.com/public/images/cheatography_logo.pdf}}
+    }
+\end{tabulary}
+\columnbreak
+\begin{tabulary}{11cm}{L}
+    \vspace{-2pt}\large{\bf{\textcolor{DarkBackground}{\textrm{Rails 4 Cheat Sheet}}}} \\
+    \normalsize{by \textcolor{DarkBackground}{entaro} via \textcolor{DarkBackground}{\uline{cheatography.com/4988/cs/931/}}}
+\end{tabulary}
+\end{multicols}}
+
+\fancyfoot[L]{ \footnotesize
+\noindent
+\begin{multicols}{3}
+\begin{tabulary}{5.8cm}{LL}
+  \SetRowColor{FootBackground}
+  \mymulticolumn{2}{p{5.377cm}}{\bf\textcolor{white}{Cheatographer}}  \\
+  \vspace{-2pt}entaro \\
+  \uline{cheatography.com/entaro} \\
+  \end{tabulary}
+\vfill
+\columnbreak
+\begin{tabulary}{5.8cm}{L}
+  \SetRowColor{FootBackground}
+  \mymulticolumn{1}{p{5.377cm}}{\bf\textcolor{white}{Cheat Sheet}}  \\
+   \vspace{-2pt}Published 6th April, 2013.\\
+   Updated 6th April, 2013.\\
+   Page {\thepage} of \pageref{LastPage}.
+\end{tabulary}
+\vfill
+\columnbreak
+\begin{tabulary}{5.8cm}{L}
+  \SetRowColor{FootBackground}
+  \mymulticolumn{1}{p{5.377cm}}{\bf\textcolor{white}{Sponsor}}  \\
+  \SetRowColor{white}
+  \vspace{-5pt}
+  %\includegraphics[width=48px,height=48px]{dave.jpeg}
+  Measure your website readability!\\
+  www.readability-score.com
+\end{tabulary}
+\end{multicols}}
+
+
+
+
+\begin{document}
+\raggedright
+\raggedcolumns
+
+% Set font size to small. Switch to any value
+% from this page to resize cheat sheet text:
+% www.emerson.emory.edu/services/latex/latex_169.html
+\footnotesize % Small font.
+
+\begin{multicols*}{3}
+
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Activer record queries}}  \tn
+% Row 0
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{Post.where(author: 'admin')} \tn 
+% Row Count 1 (+ 1)
+% Row 1
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{Post.where(author: 'admin').last} \tn 
+% Row Count 2 (+ 1)
+% Row 2
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{Post.find\_by(title: 'Rails 4', author: 'admin')} \tn 
+% Row Count 3 (+ 1)
+% Row 3
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{\seqsplit{Post.find\_or\_initialize\_by(title:} 'Rails 4')} \tn 
+% Row Count 4 (+ 1)
+% Row 4
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{\seqsplit{Post.find\_or\_create\_by(title:} 'Rails 4')} \tn 
+% Row Count 5 (+ 1)
+% Row 5
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{\seqsplit{@post.update(post\_params)} - preferred} \tn 
+% Row Count 6 (+ 1)
+% Row 6
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{\seqsplit{@post.update\_columns(post\_params)} - executes directly in database(skip validation)} \tn 
+% Row Count 8 (+ 2)
+\hhline{>{\arrayrulecolor{DarkBackground}}-}
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Scopes}}  \tn
+% Row 0
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{scope :sold, -\textgreater{}\{ where(state: 'sold') \}} \tn 
+% Row Count 1 (+ 1)
+% Row 1
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{default\_scope -\textgreater{}\{ where(state: 'available') \}} \tn 
+% Row Count 2 (+ 1)
+% Row 2
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{scope :recent, -\textgreater{}\{ where(published\_at: 2.weeks.ago) \}} \tn 
+% Row Count 4 (+ 2)
+% Row 3
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{scope :recent\_red, -\textgreater{}\{ recent.where(color: 'red') \}} \tn 
+% Row Count 6 (+ 2)
+% Row 4
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{Post.where.not(author: author)} \tn 
+% Row Count 7 (+ 1)
+% Row 5
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{User.order(:name, created\_at: :desc)} \tn 
+% Row Count 8 (+ 1)
+% Row 6
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{\seqsplit{Post.includes(:comments).where(comments:} \{ name: 'foo' \})} \tn 
+% Row Count 10 (+ 2)
+% Row 7
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{\seqsplit{Post.includes(:comments).where('comments.name'} =\textgreater{} 'foo')} \tn 
+% Row Count 12 (+ 2)
+% Row 8
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{\seqsplit{Post.includes(:comments).order('comments.name')}} \tn 
+% Row Count 13 (+ 1)
+\hhline{>{\arrayrulecolor{DarkBackground}}-}
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Flash types}}  \tn
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{class ApplicationController \textless{} ActionController::Base \newline % Row Count 2 (+ 2)
+~~add\_flash\_types :grunt, :snarl \newline % Row Count 3 (+ 1)
+end \newline % Row Count 4 (+ 1)
+flash{[}:grunt{]} = 'braaains...' \newline % Row Count 5 (+ 1)
+redirect\_to @user, grunt: 'braaains...' \newline % Row Count 6 (+ 1)
+\textless{}div id="grunt"\textgreater{}\textless{}\%= grunt \%\textgreater{}\textless{}/div\textgreater{}% Row Count 7 (+ 1)
+} \tn 
+\hhline{>{\arrayrulecolor{DarkBackground}}-}
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Concerns}}  \tn
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{concern :sociable do |options| \newline % Row Count 1 (+ 1)
+~~resources :comments, options \newline % Row Count 2 (+ 1)
+~~resources :categories, options \newline % Row Count 3 (+ 1)
+end \newline % Row Count 4 (+ 1)
+resources :messages, concerns: :sociable \newline % Row Count 5 (+ 1)
+resources :items do \newline % Row Count 6 (+ 1)
+~~concerns :sociable, only: :create \newline % Row Count 7 (+ 1)
+end% Row Count 8 (+ 1)
+} \tn 
+\hhline{>{\arrayrulecolor{DarkBackground}}-}
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Match routes}}  \tn
+% Row 0
+\SetRowColor{LightBackground}
+\mymulticolumn{1}{x{5.377cm}}{match '/items/:id/purchase', to: 'items\#purchase', via: :post} \tn 
+% Row Count 2 (+ 2)
+% Row 1
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{match '/items/:id/purchase', to: 'items\#purchase', via: :all} \tn 
+% Row Count 4 (+ 2)
+\hhline{>{\arrayrulecolor{DarkBackground}}-}
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Collection form helpers}}  \tn
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{class Owner \textless{} ActiveRecord::Base \newline % Row Count 1 (+ 1)
+~~has\_many :items \newline % Row Count 2 (+ 1)
+end \newline % Row Count 3 (+ 1)
+class Item \textless{} ActiveRecord::Base \newline % Row Count 4 (+ 1)
+~~belongs\_to :owner \newline % Row Count 5 (+ 1)
+end \newline % Row Count 6 (+ 1)
+collection\_select(:item, :owner\_id, Owner.all, :id, :name) \newline % Row Count 8 (+ 2)
+\seqsplit{collection\_radio\_buttons(:item}, :owner\_id, Owner.all, :id, :name) \newline % Row Count 10 (+ 2)
+\seqsplit{collection\_check\_boxes(:item}, :owner\_id, Owner.all, :id, :name) \newline % Row Count 12 (+ 2)
+\textless{}\%= f.date\_select :return\_date \%\textgreater{}% Row Count 13 (+ 1)
+} \tn 
+\hhline{>{\arrayrulecolor{DarkBackground}}-}
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Postgres support}}  \tn
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{To get started, first setup your database to use the hstore extension: \newline % Row Count 2 (+ 2)
+class AddHstoreExtension \textless{} ActiveRecord::Migration \newline % Row Count 4 (+ 2)
+~def up \newline % Row Count 5 (+ 1)
+~~execute 'CREATE EXTENSION hstore' \newline % Row Count 6 (+ 1)
+~end \newline % Row Count 7 (+ 1)
+~def down \newline % Row Count 8 (+ 1)
+~~execute 'DROP EXTENSION hstore' \newline % Row Count 9 (+ 1)
+~end \newline % Row Count 10 (+ 1)
+end \newline % Row Count 11 (+ 1)
+{\bf{Indexes}} \newline % Row Count 12 (+ 1)
+If you are doing any queries on an hstore property, be sure to add the appropriate index. When adding an index, you will have to decide to use either GIN or GiST index types. The distinguishing factor between the two index types is that GIN index lookups are three times faster than GiST indexes, however they also take three times longer to build. Checkout the documentation, which goes into detail about the differences. \newline % Row Count 21 (+ 9)
+class \seqsplit{AddIndexToComicsProperties} \textless{} ActiveRecord::Migration \newline % Row Count 23 (+ 2)
+~def up \newline % Row Count 24 (+ 1)
+~~execute 'CREATE INDEX comics\_properties ON comics USING gin(properties)' \newline % Row Count 26 (+ 2)
+~end \newline % Row Count 27 (+ 1)
+~def down \newline % Row Count 28 (+ 1)
+~~execute 'DROP INDEX comics\_properties' \newline % Row Count 30 (+ 2)
+} \tn 
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\vfill
+\columnbreak
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Postgres support (cont)}}  \tn
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{~end \newline % Row Count 1 (+ 1)
+end \newline % Row Count 2 (+ 1)
+Using the store\_accessor macro style method in Active Record models, we can add read/write accessors to key/value hstore properties: \newline % Row Count 5 (+ 3)
+class Comic \textless{} ActiveRecord::Base \newline % Row Count 6 (+ 1)
+~~store\_accessor :properties, :story\_arc \newline % Row Count 8 (+ 2)
+end \newline % Row Count 9 (+ 1)
+comic = Comic.create \newline % Row Count 10 (+ 1)
+comic.properties \# =\textgreater{} nil \newline % Row Count 11 (+ 1)
+comic.story\_arc = 'Throne of Atlantis' \newline % Row Count 12 (+ 1)
+comic.save \newline % Row Count 13 (+ 1)
+To query against hstore data in Active Record, use SQL string conditions with the where query method: \newline % Row Count 16 (+ 3)
+Comic.where("properties -\textgreater{} 'story\_arc' = 'Throne of Atlantis'") \newline % Row Count 18 (+ 2)
+{\bf{Array support}} \newline % Row Count 19 (+ 1)
+class AddTagsToArticles \textless{} ActiveRecord::Migration \newline % Row Count 20 (+ 1)
+def change \newline % Row Count 21 (+ 1)
+~~change\_table :articles do |t| \newline % Row Count 22 (+ 1)
+~~~t.string :tags, array: true \newline % Row Count 23 (+ 1)
+~end \newline % Row Count 24 (+ 1)
+end \newline % Row Count 25 (+ 1)
+article.tags = {[}'rails'{]} \newline % Row Count 26 (+ 1)
+article.save \newline % Row Count 27 (+ 1)
+{\bf{Another example}} \newline % Row Count 28 (+ 1)
+def due\_date\_params \newline % Row Count 29 (+ 1)
+\seqsplit{~params.require(:due\_date).permit(} \newline % Row Count 30 (+ 1)
+} \tn 
+\end{tabularx}
+\par\addvspace{1.3em}
+
+\vfill
+\columnbreak
+\begin{tabularx}{5.377cm}{X}
+\SetRowColor{DarkBackground}
+\mymulticolumn{1}{x{5.377cm}}{\bf\textcolor{white}{Postgres support (cont)}}  \tn
+\SetRowColor{white}
+\mymulticolumn{1}{x{5.377cm}}{~~:name \{ :tags =\textgreater{} {[}{]} \}, \newline % Row Count 1 (+ 1)
+~~:day\_of\_month, :day\_of\_week, :frequency \newline % Row Count 3 (+ 2)
+~) \newline % Row Count 4 (+ 1)
+end \newline % Row Count 5 (+ 1)
+class DueDate \textless{} ActiveRecord::Base \newline % Row Count 6 (+ 1)
+~~store\_accessor :recur, :frequency \newline % Row Count 7 (+ 1)
+~~store\_accessor :recur, :day\_of\_week \newline % Row Count 8 (+ 1)
+~~store\_accessor :recur, :day\_of\_month \newline % Row Count 9 (+ 1)
+end% Row Count 10 (+ 1)
+} \tn 
+\hhline{>{\arrayrulecolor{DarkBackground}}-}
+\end{tabularx}
+\par\addvspace{1.3em}
+
+
+% That's all folks
+\end{multicols*}
+
+\end{document}

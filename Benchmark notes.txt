@@ -1,0 +1,17 @@
+Rails4 change to Rack::MiniProfiler
+http://www.acunote.com/blog/2008/02/make-your-ruby-rails-applications-fast-performance-and-memory-profiling.html
+
+http://viget.com/extend/simple-benchmarking-in-ruby
+https://github.com/vigetlabs/simple-benchmark
+
+http://guides.rubyonrails.org/v3.2.13/performance_testing.html#view
+
+http://www.dan-manges.com/blog/rails-performance-tuning-workflow
+
+http://www.makeuseof.com/tag/5-free-benchmark-programs/
+
+http://guides.rubyonrails.org/v2.3.11/performance_testing.html
+
+http://stackoverflow.com/questions/3419220/benchmarking-rails-activerecord-queries
+RAILS_ENV=production rails benchmarker 2000 "User.find_by_email('backup20080512@gmail.com').id" "User.first(:conditions => {:email => 'backup20080512@gmail.com'}, :select => 'id').id"
+

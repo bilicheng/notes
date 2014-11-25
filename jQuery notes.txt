@@ -1,0 +1,43 @@
+Posted in: Using jQuery Core
+$( document ).ready()
+A page can't be manipulated safely until the document is "ready." 
+jQuery detects this state of readiness for you. Code included inside $( document ).ready() will only 
+run once the page Document Object Model (DOM) is ready for JavaScript code to execute. 
+Code included inside $( window ).load(function() { ... })
+ will run once the entire page (images or iframes), not just the DOM, is ready.
+<script type="text/JavaScript">
+$(document).ready(function() { 
+	$('.thumbnail').click(function(){
+	  	$('.modal-body').empty();
+	  	var title = $(this).attr("title");
+	  	$('.modal-title').html(title);
+	  	$($(this).parents('div').html()).appendTo('.modal-body');
+	  	$('#flickrModal').modal({show:true});
+	});
+	$('#submitSearch').click(function(){
+	   if($.trim($('#search').val()) == ''){
+	      alert('Input can not be left blank');
+	      return false;
+	   }
+	});
+});
+</script>  
+jQuery(function($) { 
+  // your code here with access to $ as jQuery alias
+}
+(function($) {
+  $(document).ready(function() {
+    // your code here
+  })
+})(jQuery);
+
+The problem when using onload to initialize a page, is that it executes after all page elements, 
+including external resources, have loaded. This creates a delay in which your page is persented to 
+the user when it may not be quite ready for the user to interact with (because the onload handler hasn't fired yet).
+
+jQuery solves this problem by introducing the document ready handler.
+
+This handler is executed when the DOM has been created, but before the page is presented to the user. 
+This guarantees that you can set up the page prior to the user being able to interact with it.
+
+Without jQuery, setting this up is tricky to do in a cross-browser fashion, but jQuery makes it easy.

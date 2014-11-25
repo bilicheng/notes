@@ -1,0 +1,64 @@
+Add to gemfile
+
+https://github.com/seyhunak/twitter-bootstrap-rails
+added
+------------
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+------------
+bundle install 
+failed at therubyracer
+answer from
+http://stackoverflow.com/questions/19126019/therubyracer-installation-on-windows-with-libv8-installed-with-system-v8
+
+When I faced this problem I found that I didn't need those gems in development, because rails use to precompile your assets, so my solution was pretty simple,
+Gemfile
+
+gem "rails"
+
+group :production do
+  gem 'therubyracer'
+end
+
+Then when you bundle run this command
+
+$ bundle install --without production
+
+didn't work to me
+------------------
+need to install libv8 manually
+
+git clone git://github.com/cowboyd/libv8.git
+cd libv8
+
+bundle install
+bundle exec rake checkout
+bundle exec rake compile
+
+failed on checkout.
+
+instead install node.js binary msi to get v8 install
+and then
+
+gem install libv8  -v 3.16.14.7 -- --with-system-v8
+
+gem install therubyracer -- --with-system-v8
+
+
+failed again
+
+git clone git://github.com/cowboyd/therubyracer.git
+cd therubyracer
+bundle install
+bundle exec rake compile
+
+git clone https://chromium.googlesource.com/v8/v8
+cd v8
+
+svn co http://gyp.googlecode.com/svn/trunk build/gyp --revision 1831
+
+gem install libv8 -v '3.11.8.13' -- --with-system-v8
+
+https://stackoverflow.com/questions/19126019/therubyracer-installation-on-windows-with-libv8-installed-with-system-v8
+

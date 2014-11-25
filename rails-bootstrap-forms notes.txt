@@ -1,0 +1,17 @@
+rails-bootstrap-forms
+https://github.com/bootstrap-ruby/rails-bootstrap-forms
+
+Add to gemfile
+
+gem 'bootstrap_form'
+
+Then require the CSS in your application.css file
+/*
+ *= require rails_bootstrap_forms
+ */
+
+or 
+import statements were in application.css.scss, like this:
+
+@import "bootstrap";
+@import 'rails_bootstrap_forms';

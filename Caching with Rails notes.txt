@@ -1,0 +1,10 @@
+Caching with Rails
+
+http://guides.rubyonrails.org/caching_with_rails.html#page-caching
+https://devcenter.heroku.com/articles/http-caching-ruby-rails
+https://devcenter.heroku.com/articles/caching-strategies#fragment-caching
+
+https://github.com/frsyuki/ruby-serializers
+
+http://stackoverflow.com/questions/24159723/caching-serializers-fails-to-cache-associations
+http://stackoverflow.com/questions/25571725/activemodel-serializers-how-do-i-serialize-a-resource-collection

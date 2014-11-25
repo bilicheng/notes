@@ -1,0 +1,16 @@
+http://quickleft.com/blog/engineering-lunch-series-step-by-step-guide-to-building-your-first-ruby-gem
+
+bundle gem rails_flickr
+
+gemspec file (rails_flickr.gemspec in this case)
+
+it's necessary to update the version number here to reflect the latest available version on RubyGems.org. 
+It's considered a best practice to follow semantic versioning. In short, what this means according to semver.org:
+
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards-compatible manner, and
+PATCH version when you make backwards-compatible bug fixes. 
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+Writing tests
+

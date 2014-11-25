@@ -1,0 +1,11 @@
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+
+rails g bootstrap:install
+
+rails g bootstrap:layout application fixed
+rails g scaffold product name price:decimal --skip-stylesheets
+rails g scaffold images title
+rails g scaffold photo
+rails g bootstrap:themed images -f

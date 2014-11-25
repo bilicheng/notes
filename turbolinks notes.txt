@@ -1,0 +1,43 @@
+https://github.com/kossnocorp/jquery.turbolinks
+https://coderwall.com/p/ypzfdw/faster-page-loads-with-turbolinks
+http://railscasts.com/episodes/390-turbolinks
+http://stackoverflow.com/questions/20510358/turbolinks-causes-a-link-with-href-to-trigger-page-refresh
+
+Not working with $(document).on('ready')
+
+jQuery Turbolinks doesn't support ready events bound via $(document).on('ready', function). 
+Instead, use $(document).ready(function) or $(function).
+
+// BAD: this will not work.
+$(document).on('ready', function () { /* ... */ });
+
+// OK: these two are guaranteed to work.
+$(document).ready(function () { /* ... */ });
+$(function () { /* ... */ });
+
+-------------
+Loading spinner
+
+You WILL need a loading indicator! This should be pretty easy to do:
+
+$(document).on('page:fetch', function() {
+  $(".loading-indicator").show();
+});
+$(document).on('page:change', function() {
+  $(".loading-indicator").hide();
+});
+Every Turbolinks site will need this, 
+otherwise it will feel very weird that clicking a link will seem to do nothing.
+
+Google analytics integration
+
+If you put your Google analytics script in your <head> (like Google recommends), 
+it will only fire once and not fire again when changing pages via Turbolinks.
+
+You need to manually fire the trackPageview on every page load:
+
+<body>
+   <script>_gaq.push(['_trackPageview']);</script>
+   ...the rest of the body here...
+</body>
+...also, be sure to modify the Analytics snippet not to do '_trackPageview' automatically.

@@ -1,0 +1,68 @@
+http://www.slideshare.net/stormpath/secure-your-rest-api-the-right-way
+
+http://scotch.io/bar-talk/designing-a-restful-web-api
+
+http://mark-kirby.co.uk/2013/creating-a-true-rest-api/
+
+https://confluence.jetbrains.com/display/TCD8/REST+API
+
+http://code.tutsplus.com/tutorials/laravel-4-a-start-at-a-restful-api-updated--net-29785
+
+http://blog.mugunthkumar.com/articles/restful-api-server-doing-it-the-right-way-part-1/#RESTful_constraints
+
+http://blog.donwilson.net/2012/04/deploying-a-rails-app-to-rackspace-cloud-servers-using-nginx-and-unicorn/
+
+Identifiers
+
+Should be opaque
+Secure Random or Random/Time UUID
+URL-friendly "Base62" encoding
+Avoid sequential numbers
+. distribute ID generation load
+. mitigate fusking attacks
+
+good
+/accounts/qoiw10932uddj
+ not so good
+ /accounts/1234
+ 
+ Query Injection
+ 
+ String query = "select * from accounts where acct_id ='"+request.getParameter("acctId") +"'"
+ 
+ Vulnerable URL
+ foo.com/accounts?acctId=' or '1'='1'
+ avoid redirect and forward
+ 
+ TLS
+ （TLS：Transport Layer Security Protocol） 
+ SSL (Secure Socket Layer)
+ 
+ 
+REST Requests and the four HTTP methods
+
+    GET
+    POST
+    PUT
+    DELETE
+Why REST
+Scalability
+Generality
+Independence
+Latency(Caching)
+Security
+Encapsulation
+
+WHy JASON
+Scalability
+Simplicity
+Readability
+Flexibility
+
+
+---------------------------------
+Versioning
+WePay uses an Api-Version header, 
+Twilio uses a similar approach putting the version date in the URL.
+
+http://www.intridea.com/blog/2012/5/24/building-streaming-rest-apis-with-ruby

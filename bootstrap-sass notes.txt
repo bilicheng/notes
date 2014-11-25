@@ -1,0 +1,26 @@
+Twitter Bootstrap, Less, and Sass
+
+http://www.sitepoint.com/twitter-bootstrap-less-and-sass-understanding-your-options-for-rails-3-1/
+
+group :assets do
+  gem 'bootstrap-sass'
+  gem 'sass-rails', '~> 4.0.3'
+  gem 'autoprefixer-rails'
+  gem 'sprockets-rails'
+end
+http://www.mattboldt.com/organizing-css-and-sass-rails/
+http://www.sitepoint.com/too-good-to-be-true-twitter-bootstrap-meets-formtastic-and-tabulous/
+bundle install
+rm application.css to application.css.scss
+and change content to
+Import Bootstrap styles in app/assets/stylesheets/application.css.scss:
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+application.js
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+//= require bootstrap-sprockets

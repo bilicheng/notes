@@ -1,0 +1,38 @@
+http://stackoverflow.com/questions/9802259/why-do-people-use-heroku-when-aws-is-present-whats-distinguishing-about-heroku
+
+https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2
+EC2 launch instance
+Amazon Linux AMI 2014.09.1 (HVM) 
+
+key name tag
+kku    123kku best game pratice
+
+Step 6: Configure Security Group
+kkyou  launch-wizard-1 created 2014-11-11T09:00:17.777+11:00
+
+boot from general SSD
+
+Make General Purpose (SSD) the default boot volume for 
+all instance launches from the console going forward (recommended).
+
+launch --
+create key pair
+name
+bestkku
+
+create billing-alerts
+
+https://www.youtube.com/watch?v=hJRSti6DsJg
+use putty to convert the private key
+
+open instance from browser
+https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId
+
+set up putty connection
+login ec2-user
+
+uname -a
+
+http://aws.amazon.com/developers/getting-started/ruby/
+
+http://iconof.com/blog/how-to-install-setup-node-js-on-amazon-aws-ec2-complete-guide/

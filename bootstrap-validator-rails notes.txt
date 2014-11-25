@@ -1,0 +1,18 @@
+https://github.com/jkaipr/bootstrap-validator-rails
+
+Add to gemfile
+
+gem 'bootstrap-validator-rails'
+
+Add into your application.js
+
+//= require bootstrapValidator.min
+
+Add into your application.css
+
+*= require bootstrapValidator.min
+
+import statements were in application.css.scss, like this:
+
+@import "bootstrap";
+@import 'bootstrapValidator';

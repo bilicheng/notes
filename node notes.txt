@@ -1,0 +1,13 @@
+npm install -g
+
+
+http://stackoverflow.com/questions/1884724/what-is-node-js
+
+I think the advantages are:
+    1. Using JavaScript on a web server as well as the browser
+    2. Much faster than Ruby, Python, or Perl
+    3. Ability to handle thousands of concurrent connections with minimal overhead on a single process.
+    4. Duplicate form validation code can be shared between server and client
+    5. mass looping
+    6. RESTful API 
+    

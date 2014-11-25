@@ -1,0 +1,5 @@
+https://github.com/decioferreira/bootstrap-generators
+
+#rails generate bootstrap:install -f
+
+rails generate bootstrap:install --stylesheet-engine=scss --skip-turbolinks

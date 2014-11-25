@@ -1,0 +1,7 @@
+rvm use ruby-1.9.3-p448@rails400
+
+RAILS_ENV=production rake assets:precompile
+
+bundle exec rake assets:precompile
+
+bundle exec rake assets:clean

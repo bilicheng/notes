@@ -1,0 +1,123 @@
+
+HK cloud server 
+
+/home/apps/kku
+
+svn checkout  svn://210.0.235.233:4004/rubydev/kku/trunk kku
+
+2. set up RVM ruby and Rails version(using 410 hopefully)
+2.1 rvm use ruby-1.9.3-p448
+2.2 rvm gemset create rails404
+
+rvm use ruby-1.9.3-p545@rails404
+
+
+vim /etc/apache2/sites-available/default
+
+<VirtualHost *:80>
+    ServerName www.123kku.com
+    DocumentRoot /home/apps/kku/public
+    PassengerEnabled off
+    ProxyPass / http://127.0.0.1:3300/
+    ProxyPassReverse / http://127.0.0.1:3300/
+</VirtualHost>
+
+vim /etc/httpd/conf/httpd.conf
+<VirtualHost *:80>
+    ServerName www.123kku.com
+    ServerAlias logbook.123kku.com
+    DocumentRoot /home/apps/kku/public
+    PassengerEnabled off
+    ProxyPass / http://127.0.0.1:3300/
+    ProxyPassReverse / http://127.0.0.1:3300/
+</VirtualHost>
+/sbin/service httpd restart
+
+
+ <VirtualHost *:80>
+    ServerName www.123kku.com
+    DocumentRoot /home/apps/kings_hotel/public
+    RewriteEngine On
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f
+    RewriteRule (.*) $1 [L]
+    ProxyPass / http://localhost:10095/
+    ProxyPassReverse / http://localhost:10095/
+    ProxyRequests Off
+    ProxyPreserveHost on
+    ErrorLog logs/hotel_error_log
+    CustomLog logs/hotel-access_log common
+    <DirectoryMatch "^/.*/\.svn/">
+      ErrorDocument 403 /404.html
+      Order allow,deny
+      Deny from all
+      Satisfy All
+    </DirectoryMatch>
+</VirtualHost>
+/etc/init.d/apache2 restart
+service apache2 restart
+passenger-memory-stats
+a2enmod passenger
+passenger start -a 127.0.0.1 -p 3300 -d
+rvm use ruby-1.9.3-p545@rails404
+passenger stop -p 3300
+a2enmod passenger
+
+ bundle exec rake db:migrate
+ 
+ bundle exec rake db:seed
+ 
+==========================
+shutdown procedure
+------------------
+patrick@tripleplay:/home/apps/infc$ /etc/init.d/infclife.sh stop
+Stopping iNFCLife passenger
+cd /home/apps/infc; /usr/local/rvm/bin/rvm use ruby-1.9.3-p448@rails400; export GEM_HOME=/usr/local/rvm/gems/ruby-1.9.3-p448@rails400; cd /home/apps/infc; /usr/local/rvm/bin/rvmsudo /usr/local/rvm/gems/ruby-1.9.3-p448@rails400/bin/passenger stop -p 3789 --pid-file /home/apps/infc/passenger.3789.pid
+Password: infclife
+
+RVM is not a function, selecting rubies with 'rvm use ...' will not work.
+
+You need to change your terminal emulator preferences to allow login shell.
+Sometimes it is required to use `/bin/bash --login` as the command.
+Please visit https://rvm.io/integration/gnome-terminal/ for a example.
+
+Warning: can not check `/etc/sudoers` for `secure_path`, falling back to call via `/usr/bin/env`, this breaks rules from `/etc/sudoers`. Run:
+
+    export rvmsudo_secure_path=1
+
+to avoid the warning, put it in shell initialization file to make it persistent.
+
+In case there is no `secure_path` in `/etc/sudoers`. Run:
+
+    export rvmsudo_secure_path=0
+
+to avoid the warning, put it in shell initialization file to make it persistent.
+
+
+startup procedure
+------------------
+patrick@tripleplay:/home/apps/infc$ /etc/init.d/infclife.sh start
+Starting iNFCLife passenger
+cd /home/apps/infc; /usr/local/rvm/bin/rvm use ruby-1.9.3-p448@rails400; export GEM_HOME=/usr/local/rvm/gems/ruby-1.9.3-p448@rails400; cd /home/apps/infc; /usr/local/rvm/bin/rvmsudo /usr/local/rvm/gems/ruby-1.9.3-p448@rails400/bin/passenger start /home/apps/infc -a 127.0.0.1 -p 3789 -e production - d
+Password: infclife
+
+RVM is not a function, selecting rubies with 'rvm use ...' will not work.
+
+You need to change your terminal emulator preferences to allow login shell.
+Sometimes it is required to use `/bin/bash --login` as the command.
+Please visit https://rvm.io/integration/gnome-terminal/ for a example.
+
+patrick@tripleplay:/home/apps/infc$ Warning: can not check `/etc/sudoers` for `secure_path`, falling back to call via `/usr/bin/env`, this breaks rules from `/etc/sudoers`. Run:
+
+    export rvmsudo_secure_path=1
+
+to avoid the warning, put it in shell initialization file to make it persistent.
+
+In case there is no `secure_path` in `/etc/sudoers`. Run:
+
+    export rvmsudo_secure_path=0
+
+to avoid the warning, put it in shell initialization file to make it persistent.
+=============== Phusion Passenger Standalone web server started ===============
+PID file: /home/apps/infc/passenger.3789.pid
+Log file: /home/apps/infc/passenger.3789.log
+Environment: production

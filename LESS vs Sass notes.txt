@@ -1,0 +1,31 @@
+http://www.smashingmagazine.com/2011/09/09/an-introduction-to-less-and-comparison-to-sass/
+All of these approaches will work equally well:
+
+Using the original Less code via a Rails engine (less-rails-bootstrap or twitter-bootstrap-rails)
+Copying in translated Sass code directly into your application (sass-twitter-bootstrap), or
+Using a translated Sass version via a Rails engine (bootstrap-sass or bootstrap-rails).
+
+gem 'bootstrap_generator'
+
+rails generate bootstrap:install --stylesheet-engine=scss --skip-turbolinks
+
+LESS and Sass share a lot of similarities in syntax, including the following:
+Mixins – Classes for classes.
+Parametric mixins – Classes to which you can pass parameters, like functions.
+Nested Rules – Classes within classes, which cut down on repetitive code.
+Operations – Math within CSS.
+Color functions – Edit your colors.
+Namespaces – Groups of styles that can be called by references.
+Scope – Make local changes to styles.
+JavaScript evaluation – JavaScript expressions evaluated in CSS.
+The main difference between LESS and Sass is the way in which they are processed. 
+LESS is a JavaScript library and is, therefore, processed client-side.
+
+Sass, on the other hand, runs on Ruby and is processed server-side. 
+A lot of developers might not choose LESS because of the additional time needed for the JavaScript engine 
+to process the code and output the modified CSS to the browser. 
+
+The reality is that Sass does require Ruby, however it does not need to be compiled to CSS on the server. 
+ It can be compiled locally (just as LESS has mentioned for itself) 
+ and the compiled CSS can be shipped with your project, WordPress theme, 
+ Expression Engine template, or whatever to the server just like your previous CSS files.

@@ -1,0 +1,36 @@
+https://github.com/bbatsov/ruby-style-guide
+
+https://github.com/bbatsov/rubocop
+a Ruby code style checker based on this style guide. 
+RuboCop already covers a significant portion of the Guide, 
+supports both MRI 1.9 and MRI 2.0 and has good Emacs integration.
+
+2.3. Project Layout
+
+The following name conventions are in place for Ruby files:
+
+To limit complexity of Ruby include paths, all Ruby tests and scripts are assumed to be part of the OpenStudio library, that the lib directory is in the user's Ruby path, and that all required shared libraries are in the system's path (this is achieved during the require 'openstudio' call). Therefore, all Ruby scripts and libraries should refer to each other relative to the lib directory.
+
+2.3.1. Directory Structure
+
+Ruby is full of conventions and these should be respected in order to enable other Ruby based tools when possible. The directory structure of a Ruby project should have the following conventions
+
+bin - Any executables
+test - Unit test directory
+spec - RSpec test directory
+lib - Library directory containing subdirectories of the modules and source files
+ext - Native extensions
+The name of the directories shall be the snake cased version of the Module or Class name
+
+File names shall be snake cased, typically conforming to the snake cased version of the Module or Class name.
+
+2.3.2. Source Files
+
+The following are common files used in Ruby and the expected extensions (case sensitive)
+
+Rakefile - Rakefile
+Gemfile - Gemfile
+Ruby Files - .rb
+Embedded Ruby Files - .rb.erb
+Test Files - *_test.rb
+Spec Files - *_spec.rb

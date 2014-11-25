@@ -1,0 +1,46 @@
+http://railscasts.com/episodes/187-testing-exceptions
+http://railscasts.com/episodes/257-request-specs-and-capybara
+Add to gemfile
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
+
+rails generate rspec:install
+
+rspec -- init
+
+rails g integration_test task
+
+rake spec:requests
+
+change require 'rails_helper' to require 'spec_helper'
+
+This adds the following files which are used for configuration:
+
+    .rspec
+    spec/spec_helper.rb
+    spec/rails_helper.rb
+    
+rspec how to run a single test?
+http://stackoverflow.com/questions/6116668/rspec-how-to-run-a-single-test
+rspec spec                               # All specs
+rspec spec/models                        # All specs in the models directory
+rspec spec/models/some_model_spec.rb     # All specs in the some_model model spec
+rspec spec/models/some_model_spec.rb:nn  # Run the spec that includes line 'nn'
+rspec -e"text from a test"               # Runs all specs that match the text
+
+bundle exec might need
+
+BDD -- behavior-driven development (abbreviated BDD) 
+ test-driven development (TDD)
+ BDD
+Behavior Driven Development
+•
+BDD focuses TDD to deliver the maximum value possible to stakeholders
+•
+BDD is a refinement in the language and tooling used for TDD
+•
+As the name implies with BDD we focus on behavior specifications
+
+http://betterspecs.org/

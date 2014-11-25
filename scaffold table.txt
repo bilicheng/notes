@@ -1,0 +1,11 @@
+rails generate scaffold logbook  priority:string  title:string skills:string brush_up:string ref_url:string contact_name:string contact_number:string contact_email:string action_to_be_taken:string current_status:string job_ad_dete:date applied_date:date company_url:string resume_file:string --skip-stylesheets
+
+rails g bootstrap:themed logbooks -f
+
+rails generate scaffold followup  action_to_be_taken:text current_status:string action_dete:datetime other_details:text
+
+rails generate scaffold user email:string hashed_password:string salt:string idno_masked:string
+
+rails generate scaffold session email:string password:string
+
+

@@ -1,0 +1,12 @@
+Download it, run it to extract it somewhere (permanent). Then cd to it, 
+run 
+c:\devkit>ruby dk.rb init 
+c:\devkit>ruby dk.rb install 
+
+to bind it to ruby installations in your path.
+
+test installation
+
+gem install json --platform=ruby
+ruby -rubygems -e "require 'json'; puts JSON.load('[42]').inspect" to confirm that the json gem is working.
+s

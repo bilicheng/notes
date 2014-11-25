@@ -1,0 +1,15 @@
+Add to gemfile
+
+gem 'simple_form'
+
+Run the following command to install it:
+
+bundle install
+
+gem 'country_select'
+
+Bootstrap
+
+Simple Form can be easily integrated to the Bootstrap. To do that you have to use the bootstrap option in the install generator, like this:
+
+rails generate simple_form:install --bootstrap

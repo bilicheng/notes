@@ -1,0 +1,7 @@
+http://guides.rubygems.org/run-your-own-gem-server/
+gem server
+
+giem install geminabox
+
+gem sources --add http://localhost:9292
+rackup

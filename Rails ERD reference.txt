@@ -1,0 +1,12 @@
+1.Add gem "rails-erd" to your application's Gemfile
+group :development do
+  gem "rails-erd"
+end
+
+2. bundle install
+
+Run bundle exec erd
+
+3. rake erd filetype=dot
+
+4. download and istall graphviz(be careful windows version have sprawn software)

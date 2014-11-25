@@ -1,0 +1,8 @@
+There is no V8 binary in node.js. Instead, V8 is bound into the node.js binary.
+
+http://nodejs.org/download/
+
+How to check which version of v8 is installed with NodeJS?
+
+node -e "console.log(process.versions.v8)"
+

@@ -1,0 +1,17 @@
+https://github.com/nghuuphuoc/bootstrapvalidator
+
+download bootstrapValidator.js
+bootstrapValidator.css
+
+Add into your application.js
+
+//= require bootstrapValidator
+
+Add into your application.css
+
+*= require bootstrapValidator
+
+or import into application.css.scss, like this:
+
+@import "bootstrap";
+@import 'bootstrapValidator';

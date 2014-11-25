@@ -1,0 +1,10 @@
+collect notification data
+1. custome log
+   Rails.log.info
+2. New Relic
+
+3. stastD
+
+4. KISS
+   kiss_event
+   
